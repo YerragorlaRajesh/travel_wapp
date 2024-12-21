@@ -27,7 +27,12 @@ jobs:
       run: |
         python manage.py collectstatic --noinput
       env:
-        RAJESH_PASSWORD: ${{ secrets.RAJESH_PASSWORD }}
+        RAJESH_PASSWORD: ${{ secrets.RAJESH_PASSWORD }} 
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
