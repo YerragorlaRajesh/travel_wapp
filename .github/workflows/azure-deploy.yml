@@ -4,7 +4,7 @@ on:
     branches: [ main ]
 
 env:
-  AZURE_WEBAPP_NAME: travel_wapp
+  AZURE_WEBAPP_NAME: travel-wapp
   PYTHON_VERSION: '3.10'
 
 jobs:
@@ -28,7 +28,6 @@ jobs:
         python manage.py collectstatic --noinput
       env:
         RAJESH_PASSWORD: ${{ secrets.RAJESH_PASSWORD }}
-        RAJESH_EMAIL: ${{ secrets.RAJESH_EMAIL }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
