@@ -1,3 +1,0 @@
-name: travel_wapp
-language: python
-startCommand: gunicorn travel_wapp.wsgi:application
