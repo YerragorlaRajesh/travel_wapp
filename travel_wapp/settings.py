@@ -24,6 +24,21 @@ except ImportError:
 
 RAJESH_PASSWORD = os.environ.get('RAJESH_PASSWORD', 'default_password_123')
 
+AZURE_DOMAIN = 'travel-wapp-dffjgtfpf9e7cahw.centralindia-01.azurewebsites.net'
+
+ALLOWED_HOSTS = [
+    AZURE_DOMAIN,
+    'localhost',
+    '127.0.0.1'
+]
+
+# Add CSRF trusted origins with your specific domain
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{AZURE_DOMAIN}',
+    'http://localhost',
+    'http://127.0.0.1'
+]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -71,6 +86,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'travel_wapp.urls'
 
