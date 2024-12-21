@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center my-5">
+    <h1 class="display-4 fw-bold">Welcome to the Travel App</h1>
+    <p class="lead">Choose from our booking options below:</p>
+</div>
+
+<div class="container my-5">
+    <div class="row text-center">
+        <!-- Hotel Booking Section -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'hotel_booking:hotel_list' %}" class="booking-option" style="background-image: url('{% static 'images/Hotels.jpeg' %}');">
+                <div class="overlay">
+                    <h2 class="text-white">Hotels</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- Cab Booking Section -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'cab_booking:cab_list' %}" class="booking-option" style="background-image: url('{% static 'images/Cabs.jpeg' %}');">
+                <div class="overlay">
+                    <h2 class="text-white">Cabs</h2>
+                </div>
+            </a>
+        </div>
+
+        <!-- Event Booking Section -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'event_booking:event_list' %}" class="booking-option" style="background-image: url('{% static 'images/Events.jpeg' %}');">
+                <div class="overlay">
+                    <h2 class="text-white">Events</h2>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Motivational Travel Quote -->
+    <div class="text-center my-4">
+        <p class="lead" style="font-style: italic; font-weight: bold; color: #34495e; font-size: 1.5em;">
+            <span style="border-left: 4px solid #e74c3c; padding-left: 10px;">
+                "Travel opens your heart, broadens your mind, and fills your life with stories to tell."
+            </span>
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-dark text-center text-white py-3 mt-4">
+    <p>&copy; 2024 Travel App. All rights reserved.</p>
+</footer>
+{% endblock %}
+

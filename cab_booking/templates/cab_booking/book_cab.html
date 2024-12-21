@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Book Cab{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Confirm Cab Booking - {{ cab.cab_type }}</h2>
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <div class="text-center mb-4">
+            <img src="{% static 'images/cabs_placeholder.jpeg' %}" alt="Cab Image" style="width: 100%; max-width: 200px; height: auto; border-radius: 8px;">
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="pickup_location">Pickup Location</label>
+                <input type="text" name="pickup_location" id="pickup_location" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="drop_location">Drop Location</label>
+                <input type="text" name="drop_location" id="drop_location" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="pickup_time">Pickup Time</label>
+                <input type="datetime-local" name="pickup_time" id="pickup_time" class="form-control" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="distance">Estimated Distance (in km)</label>
+                <input type="number" name="distance" id="distance" class="form-control" value="{{ distance }}" readonly>
+            </div>
+            <div class="form-group mb-3">
+                <label for="estimated_fare">Estimated Fare</label>
+                <input type="text" name="estimated_fare" id="estimated_fare" class="form-control" value="${{ estimated_fare }}" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-3">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

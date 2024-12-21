@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Cab Booking Confirmation{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Cab Booking Confirmation</h2>
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <p class="text-center" style="font-size: 1.1em; color: #16a085;">Thank you for booking your cab!</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Cab Type:</strong> {{ booking.cab.cab_type }}</li>
+            <li class="list-group-item"><strong>Pickup Location:</strong> {{ booking.pickup_location }}</li>
+            <li class="list-group-item"><strong>Drop Location:</strong> {{ booking.drop_location }}</li>
+            <li class="list-group-item"><strong>Pickup Time:</strong> {{ booking.pickup_time }}</li>
+            <li class="list-group-item"><strong>Estimated Distance:</strong> {{ booking.distance }} km</li>
+            <li class="list-group-item"><strong>Estimated Fare:</strong> ${{ booking.estimated_fare }}</li>
+        </ul>
+        <a href="{% url 'cab_booking:cab_list' %}" class="btn btn-secondary mt-4 w-100">Back to Cabs</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cabs{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Available Cabs</h1>
+    <div class="row">
+        {% for cab in cabs %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                {% comment %} <img src="{% static 'images/cab_placeholder.jpg' %}" class="card-img-top" alt="Cab Image" style="height: 200px; object-fit: cover;"> {% endcomment %}
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="font-weight: 500; color: #34495e;">{{ cab.cab_type }}</h5>
+                    <p class="card-text" style="color: #7f8c8d;">Base Fare: ${{ cab.base_fare }}</p>
+                    <p class="card-text" style="font-size: 1.2em; color: #e74c3c;">
+                        <strong>Rate per km: ${{ cab.per_km_rate }}</strong>
+                    </p>
+                    <a href="{% url 'cab_booking:estimate_fare' cab.id %}" class="btn btn-primary w-100">Estimate Fare</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Event Booking Confirmation{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Event Booking Confirmation</h2>
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <p class="text-center" style="font-size: 1.1em; color: #16a085;">Thank you for booking your tickets!</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Event Name:</strong> {{ booking.event.name }}</li>
+            <li class="list-group-item"><strong>Venue:</strong> {{ booking.event.venue }}</li>
+            <li class="list-group-item"><strong>Event Date:</strong> {{ booking.event.event_date }}</li>
+            <li class="list-group-item"><strong>Number of Tickets:</strong> {{ booking.number_of_tickets }}</li>
+            <li class="list-group-item"><strong>Total Price:</strong> ${{ booking.total_price }}</li>
+        </ul>
+        <a href="{% url 'event_booking:event_list' %}" class="btn btn-secondary mt-4 w-100">Back to Events</a>
+    </div>
+</div>
+{% endblock %}

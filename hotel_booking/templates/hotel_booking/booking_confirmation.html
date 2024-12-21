@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Hotel Booking Confirmation{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Hotel Booking Confirmation</h2>
+    
+    <!-- Centering the confirmation card with a reduced width -->
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <p class="text-center" style="font-size: 1.1em; color: #16a085;">Thank you for your booking!</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Hotel Name:</strong> {{ booking.hotel.name }}</li>
+            <li class="list-group-item"><strong>Location:</strong> {{ booking.hotel.location }}</li>
+            <li class="list-group-item"><strong>Check-in Date:</strong> {{ booking.check_in_date }}</li>
+            <li class="list-group-item"><strong>Check-out Date:</strong> {{ booking.check_out_date }}</li>
+            <li class="list-group-item"><strong>Number of Guests:</strong> {{ booking.guests }}</li>
+            <li class="list-group-item"><strong>Total Price:</strong> ${{ booking.total_price }}</li>
+        </ul>
+        <a href="{% url 'hotel_booking:book_hotel' booking.hotel.id %}" class="btn btn-primary mt-4 w-100">Book Again</a>
+        <a href="{% url 'hotel_booking:hotel_list' %}" class="btn btn-secondary mt-2 w-100">Back to Hotels</a>
+    </div>
+</div>
+{% endblock %}
+

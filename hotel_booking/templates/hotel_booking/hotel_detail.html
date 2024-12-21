@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ hotel.name }} Details{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Centering the hotel details card with reduced width -->
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <!-- Displaying the hotel image with a smaller size -->
+        <div class="text-center mb-4">
+            <img src="{% static 'images/hotel_large_placeholder.jpeg' %}" 
+                 class="card-img-top" 
+                 alt="Hotel Image" 
+                 style="width: 100%; max-width: 200px; height: auto; border-radius: 8px;">
+        </div>
+
+        <div class="card-body text-center">
+            <h2 class="card-title" style="font-weight: 600; color: #2c3e50;">{{ hotel.name }}</h2>
+            <p class="card-text" style="color: #7f8c8d;">{{ hotel.location }}</p>
+            <p class="card-text">{{ hotel.description }}</p>
+            <p class="card-text" style="font-size: 1.2em; color: #e74c3c;">
+                <strong>${{ hotel.price_per_night }}</strong> per night
+            </p>
+            <a href="{% url 'hotel_booking:book_hotel' hotel.id %}" class="btn btn-success mt-3 w-100">Book Now</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

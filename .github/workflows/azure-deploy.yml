@@ -1,0 +1,37 @@
+name: Deploy to Azure
+on:
+  push:
+    branches: [ main ]
+
+env:
+  AZURE_WEBAPP_NAME: travel_wapp
+  PYTHON_VERSION: '3.10'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Collect static files
+      run: |
+        python manage.py collectstatic --noinput
+      env:
+        RAJESH_PASSWORD: ${{ secrets.RAJESH_PASSWORD }}
+        RAJESH_EMAIL: ${{ secrets.RAJESH_EMAIL }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}

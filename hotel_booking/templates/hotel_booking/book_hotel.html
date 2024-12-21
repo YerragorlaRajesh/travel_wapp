@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book {{ hotel.name }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Book {{ hotel.name }}</h2>
+    <div class="card p-4 shadow-lg mx-auto" style="max-width: 500px;">
+        <div class="text-center mb-4">
+            <!-- Conditional rendering of the image -->
+            {% if hotel.image %}
+                <img src="{{ hotel.image.url }}" class="card-img-top" alt="Hotel Image" style="width: 100%; max-width: 200px; height: auto; border-radius: 8px;">
+            {% else %}
+                <img src="{% static 'images/hotel_checkin_placeholder.jpeg' %}" class="card-img-top" alt="Placeholder Image" style="width: 100%; max-width: 200px; height: auto; border-radius: 8px;">
+            {% endif %}
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="check_in_date" class="form-label">Check-in Date</label>
+                <input type="date" name="check_in_date" id="check_in_date" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="check_out_date" class="form-label">Check-out Date</label>
+                <input type="date" name="check_out_date" id="check_out_date" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="guests" class="form-label">Number of Guests</label>
+                <input type="number" name="guests" id="guests" class="form-control" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 w-100">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+

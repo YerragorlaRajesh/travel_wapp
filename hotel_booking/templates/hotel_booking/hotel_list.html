@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hotels{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Available Hotels</h1>
+    <div class="row">
+        {% for hotel in hotels %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                {% comment %} <img src="{% static 'images/hotel_placeholder.jpeg' %}" class="card-img-top" alt="Hotel Image"> {% endcomment %}
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="font-weight: 500; color: #34495e;">{{ hotel.name }}</h5>
+                    <p class="card-text" style="color: #7f8c8d;">{{ hotel.location }}</p>
+                    <p class="card-text" style="font-size: 1.2em; color: #e74c3c;">
+                        <strong>${{ hotel.price_per_night }}</strong> per night
+                    </p>
+                    <a href="{% url 'hotel_booking:hotel_detail' hotel.id %}" class="btn btn-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

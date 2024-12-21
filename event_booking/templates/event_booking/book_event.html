@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Book Event{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="font-weight: 600; color: #2c3e50;">Book Tickets for {{ event.name }}</h2>
+    <div class="card shadow-lg p-4 mx-auto" style="max-width: 500px;">
+        <div class="text-center mb-4">
+            <img src="{% static 'images/events_placeholder.jpeg' %}" alt="Event Image" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px;">
+        </div>
+
+        <p><strong>Venue:</strong> {{ event.venue }}</p>
+        <p><strong>Date:</strong> {{ event.event_date }}</p>
+        <p><strong>Ticket Price:</strong> ${{ event.ticket_price }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="number_of_tickets">Number of Tickets</label>
+                <input type="number" name="number_of_tickets" id="number_of_tickets" class="form-control" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

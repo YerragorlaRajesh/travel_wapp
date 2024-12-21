@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+.env
+staticfiles/
+*.log
+.vscode/
+.idea/
+# Don't ignore db.sqlite3 as we want to deploy it
